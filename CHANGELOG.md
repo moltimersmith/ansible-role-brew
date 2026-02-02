@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.0.3](https://github.com/moltimersmith/ansible-role-brew/compare/v0.0.2...v0.0.3) (2026-02-02)
+
+
+### CI
+
+* trigger Galaxy import on Release Please workflow completion ([a448d65](https://github.com/moltimersmith/ansible-role-brew/commit/a448d65ad055abe971f5c0b5cd1e36d86766caa2))
+
 ## [0.0.2](https://github.com/moltimersmith/ansible-role-brew/compare/v0.0.1...v0.0.2) (2026-02-02)
 
 
