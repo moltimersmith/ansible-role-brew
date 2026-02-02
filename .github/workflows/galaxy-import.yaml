@@ -1,0 +1,46 @@
+name: Publish to Ansible Galaxy
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+    inputs:
+      github_reference:
+        description: "Git ref to import (tag/branch/sha). Defaults to release tag when triggered by a release."
+        required: false
+
+permissions:
+  contents: read
+
+jobs:
+  import:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger Ansible Galaxy role import
+        env:
+          GALAXY_API_TOKEN: ${{ secrets.GALAXY_API_TOKEN }}
+          GITHUB_USER: moltimersmith
+          GITHUB_REPO: ansible-role-brew
+          # release event tag name, e.g. v0.0.2
+          RELEASE_TAG: ${{ github.event.release.tag_name }}
+          INPUT_REF: ${{ github.event.inputs.github_reference }}
+        run: |
+          set -euo pipefail
+
+          if [ -z "${GALAXY_API_TOKEN}" ]; then
+            echo "GALAXY_API_TOKEN secret is not set" >&2
+            exit 1
+          fi
+
+          REF="${INPUT_REF:-${RELEASE_TAG:-}}"
+          if [ -z "${REF}" ]; then
+            # fallback for manual/scheduled runs
+            REF="main"
+          fi
+
+          echo "Triggering Galaxy import for ${GITHUB_USER}/${GITHUB_REPO} ref=${REF}"
+
+          curl -fsS -X POST "https://galaxy.ansible.com/api/v1/imports/" \
+            -H "Content-Type: application/json" \
+            -H "Authorization: Token ${GALAXY_API_TOKEN}" \
+            -d "{\"github_user\":\"${GITHUB_USER}\",\"github_repo\":\"${GITHUB_REPO}\",\"github_reference\":\"${REF}\"}"
