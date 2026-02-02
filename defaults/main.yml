@@ -1,0 +1,18 @@
+---
+# Homebrew management role
+
+# Whether to enforce that the target is macOS (Darwin).
+# If false, this role will still fail unless `brew` is present.
+brew_require_macos: true
+
+# If true, run `brew update` before installing taps/formulae/casks.
+brew_update: false
+
+# List of taps to ensure present, e.g. ["defenseunicorns/tap"].
+brew_taps: []
+
+# List of formulae to ensure installed, e.g. ["uds"].
+brew_formulae: []
+
+# List of casks to ensure installed, e.g. ["docker"].
+brew_casks: []

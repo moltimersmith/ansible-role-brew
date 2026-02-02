@@ -1,0 +1,10 @@
+---
+- name: Test brew role
+  hosts: all
+  gather_facts: true
+  roles:
+    - role: brew
+      vars:
+        brew_taps: []
+        brew_formulae: []
+        brew_casks: []

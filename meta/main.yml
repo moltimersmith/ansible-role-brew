@@ -1,0 +1,21 @@
+---
+dependencies: []
+
+galaxy_info:
+  role_name: brew
+  author: Moltimer Smith
+  description: Common role to manage Homebrew taps and packages (formulae/casks) on macOS.
+  license: MIT
+
+  min_ansible_version: "2.14"
+
+  platforms:
+    - name: macOS
+      versions:
+        - all
+
+  galaxy_tags:
+    - homebrew
+    - brew
+    - macos
+    - package
