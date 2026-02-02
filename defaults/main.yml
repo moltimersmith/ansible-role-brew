@@ -8,6 +8,9 @@ brew_require_macos: true
 # If true, run `brew update` before installing taps/formulae/casks.
 brew_update: false
 
+# Default PATH used for non-interactive SSH sessions (Homebrew often lives in /opt/homebrew/bin on Apple Silicon)
+brew_default_path: "/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+
 # List of taps to ensure present, e.g. ["defenseunicorns/tap"].
 brew_taps: []
 
